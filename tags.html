@@ -1,0 +1,33 @@
+---
+layout: page
+title: 
+header: 根据快速导航到相应的文章
+group: navigation
+---
+{% include JB/setup %}
+
+<!--<ul class="tag_box inline">-->
+<!--  {% assign tags_list = site.tags %}  -->
+<!--  {% include JB/tags_list %}-->
+<!--</ul>-->
+
+<script src="https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js"></script>
+<script>addBackToTop({
+  diameter: 56,
+  backgroundColor: 'rgb(255, 82, 82)',
+  textColor: '#fff'
+})</script>
+
+<div class = "card">
+{% assign sorted_tags = site.tags | sort %}
+{% for tag in sorted_tags %} 
+
+  <h3 id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+  <ul>
+    {% assign pages_list = tag[1] | sort: 'title' %}  
+    {% include JB/pages_list %}
+  </ul>
+
+
+{% endfor %}
+</div>
